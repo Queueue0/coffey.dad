@@ -1,26 +1,9 @@
-from sanic import Sanic
-from sanic_ext import render
-from textwrap import dedent
+from sanic import Request, Sanic
 
 app = Sanic("coffey_dad")
+app.static('/static', './static')
 
-@app.get("/")
-async def hello_world(request):
-    template = dedent("""
-        <!DOCTYPE html>
-        <html lang="en">
-            <head>
-                <title>coffey.dad</title>
-            </head>
-
-            <body>
-                <h1>Under construction</h1>
-                <p>Nothing to see here!</p>    
-            </body>
-        </html>
-    """)
-
-    return await render(
-        template_source=template,
-        app=app,
-    )
+@app.get("/", name="home")
+@app.ext.template("home.html")
+async def hello_world(request: Request):
+    return {"app": app}
