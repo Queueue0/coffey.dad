@@ -1,0 +1,20 @@
+{% extends "base_template.html" %}
+
+{% block content %}
+<div class="container is-fluid">
+  {% for post in posts %}
+  <div class="card mb-3">
+    <header class="card-header">
+      <p class="card-header-title">
+        {{ post.title }}
+      </p>
+    </header>
+    <div class="card-content">
+      <div class="content">
+        {{ post.text|safe }}
+      </div>
+    </div>
+  </div>
+  {% endfor %}
+</div>
+{% endblock %}
