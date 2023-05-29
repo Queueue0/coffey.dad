@@ -19,6 +19,19 @@
             Blog
           </a>
         </div>
+        {% if logged_in %}
+        <div class="navbar-end">
+          <div class="navbar-item">
+            <div class="field is-grouped">
+              <p class="control">
+                <a class="button is-primary is-light" href="{{ app.url_for('auth.logout') }}">
+                  Log Out
+                </a>
+              </p>
+            </div>
+          </div>
+        </div>
+        {% endif %}
       </div>
     </nav>
     {% block content %}

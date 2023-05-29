@@ -34,4 +34,7 @@ app.blueprint(auth_bp, url_prefix="/auth")
 @app.get("/", name="home")
 @app.ext.template("home.html")
 async def hello_world(request: Request):
-    return {"app": app}
+    return {
+        "app": request.app,
+        "logged_in": True if auth.current_user(request) else False
+    }

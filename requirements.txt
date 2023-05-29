@@ -20,6 +20,7 @@ packaging==23.1
 parso==0.8.3
 platformdirs==3.5.1
 pluggy==1.0.0
+py-bcrypt==0.4
 pycodestyle==2.10.0
 pycparser==2.21
 pydocstyle==6.3.0

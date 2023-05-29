@@ -1,6 +1,8 @@
+from bcrypt import checkpw
+from core import auth
+from models import auth_user_model
 from sanic import Blueprint, Request, response
 from sanic_auth import User
-from core import auth
 
 bp = Blueprint('auth')
 
@@ -28,7 +30,9 @@ async def login(request: Request):
         username = request.form.get('username')
         password = request.form.get('password')
 
-        if username == 'demo' and password == 'password':
+        user = auth_user_model.get_by_username('username')
+
+        if user and checkpw(password, user['password']):
             user = User(id=1, name=username)
             auth.login_user(request, user)
             return response.redirect('/')
