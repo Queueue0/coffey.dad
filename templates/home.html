@@ -8,7 +8,7 @@
       <div class="card">
         <div class="card-image">
           <figure class="image is-3by4">
-            <img src="{{ app.url_for('static', name='static', filename='me.jpeg') }}" alt="Me sitting in Disney World holding a lightsaber">
+            <img src="{{ request.app.url_for('static', name='static', filename='me.jpeg') }}" alt="Me sitting in Disney World holding a lightsaber">
           </figure>
         </div>
         <div class="card-content">

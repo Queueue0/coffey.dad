@@ -23,6 +23,10 @@ LOGIN_FORM = '''
 '''
 
 
+def is_logged_in(request: Request):
+    return True if auth.current_user(request) else False
+
+
 @bp.route('/login', methods=['GET', 'POST'])
 async def login(request: Request):
     message = ''
