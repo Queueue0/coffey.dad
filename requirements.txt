@@ -2,7 +2,7 @@ aiofiles==23.1.0
 astroid==2.15.5
 autopep8==2.0.2
 cffi==1.15.1
-cryptography==40.0.2
+cryptography>=41.0.3
 dill==0.3.6
 docstring-to-markdown==0.12
 flake8==6.0.0
