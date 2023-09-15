@@ -3,7 +3,7 @@ from db import get_db
 
 def get_all():
     db = get_db()
-    db.cursor.execute('SELECT * FROM post ORDER BY created ASC')
+    db.cursor.execute('SELECT * FROM post ORDER BY created DESC')
     return db.cursor.fetchall()
 
 
@@ -14,9 +14,10 @@ def add(title, body):
         'body': body,
     }
     db.cursor.execute(
-        'INSERT INTO post(title, body) VALUES (%(title)s, %(body)s)',
+        'INSERT INTO post (title, body) VALUES (%(title)s, %(body)s)',
         data
     )
+    db.commit()
     return db.cursor.lastrowid
 
 
