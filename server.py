@@ -1,3 +1,4 @@
+import aioredis
 import os
 
 from auth import bp as auth_bp
@@ -5,7 +6,7 @@ from blog import bp as blog_bp
 from core import auth
 from dotenv import load_dotenv
 from sanic import Request, Sanic
-from sanic_session import Session, InMemorySessionInterface
+from sanic_session import Session, AIORedisSessionInterface
 
 load_dotenv()
 
@@ -22,8 +23,17 @@ db_settings = {
 }
 app.config.update(db_settings)
 
+app.config['REDIS'] = os.getenv('REDIS_URL')
+
 auth.setup(app)
-session = Session(app, interface=InMemorySessionInterface())
+session = Session()
+
+
+@app.listener('before_server_start')
+async def server_init(app, loop):
+    app.ctx.redis = aioredis.from_url(
+        app.config['REDIS'], decode_responses=True)
+    session.init_app(app, interface=AIORedisSessionInterface(app.ctx.redis))
 
 app.static('/static', './static')
 

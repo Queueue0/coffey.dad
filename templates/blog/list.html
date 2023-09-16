@@ -2,6 +2,9 @@
 
 {% block content %}
 <div class="container is-max-desktop">
+  {% if request.ctx.session.get('_auth', None) %}
+  <a class="button is-link mb-3" href="{{ request.app.url_for('blog.add_post') }}"><span class="fa-regular fa-square-plus pr-1"></span> Add New Post</a>
+  {% endif %}
   {% for post in posts %}
   <div class="card mb-3">
     <header class="card-header">
