@@ -1,15 +1,18 @@
+import os
+
 import aioredis
 import markdown as md
-import os
+from dotenv import load_dotenv
+from markdown.extensions.extra import ExtraExtension
+from sanic import Request, Sanic
+from sanic_session import Session, AIORedisSessionInterface
 
 from auth import bp as auth_bp
 from blog import bp as blog_bp
 from core import auth
-from dotenv import load_dotenv
-from markdown.extensions.extra import ExtraExtension
 from models import post_model
-from sanic import Request, Sanic
-from sanic_session import Session, AIORedisSessionInterface
+from upload import bp as upload_bp
+
 
 load_dotenv()
 
@@ -42,6 +45,7 @@ app.static('/static', './static')
 
 app.blueprint(blog_bp, url_prefix="/blog")
 app.blueprint(auth_bp, url_prefix="/auth")
+app.blueprint(upload_bp, url_prefix="/upload")
 
 
 @app.get("/", name="home")
