@@ -30,6 +30,7 @@ db_settings = {
 app.config.update(db_settings)
 
 app.config['REDIS'] = os.getenv('REDIS_URL')
+app.config['UPLOAD_PATH'] = os.getenv('UPLOAD_PATH')
 
 auth.setup(app)
 session = Session()

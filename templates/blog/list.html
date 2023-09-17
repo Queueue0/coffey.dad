@@ -5,8 +5,18 @@
 {% block content %}
 <div class="container is-max-desktop">
   {% if request.ctx.session.get('_auth', None) %}
-  <a class="button is-link is-light mb-3" href="{{ request.app.url_for('blog.add_post') }}"><span
-      class="fa-regular fa-square-plus pr-1"></span> Add New Post</a>
+  <div class="level mb-3">
+    <div class="level-left">
+      <div class="level-item">
+        <a class="button is-link is-light" href="{{ request.app.url_for('blog.add_post') }}"><span
+            class="fa-regular fa-square-plus pr-1"></span> Add New Post</a>
+      </div>
+      <div class="level-item">
+        <a class="button is-link is-light" href="{{ request.app.url_for('upload.upload') }}"><span
+            class="fa-solid fa-folder-plus pr-1"></span> Upload Files</a>
+      </div>
+    </div>
+  </div>
   {% endif %}
   {% for post in posts %}
   <div class="card mb-3">

@@ -2,6 +2,11 @@
 
 {% block title %}New Post | coffey.dad{% endblock %}
 
+{% block scripts %}
+<script src="{{ request.app.url_for('static', name='static', filename='js/showdown.min.js') }}"></script>
+<script src="{{ request.app.url_for('static', name='static', filename='js/md_preview.js') }}"></script>
+{% endblock %}
+
 {% block content %}
 <div class="container is-max-desktop">
   <form method="post">
@@ -36,8 +41,4 @@
     </div>
   </div>
 </div>
-
-<script src="{{ request.app.url_for('static', name='static', filename='js/showdown.min.js') }}"></script>
-<script src="{{ request.app.url_for('static', name='static', filename='js/md_preview.js') }}"></script>
-
 {% endblock %}

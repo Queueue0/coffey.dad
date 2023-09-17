@@ -2,10 +2,120 @@
 
 {% block title %}Upload Images | coffey.dad{% endblock %}
 
+{% block scripts %}
+<script src="{{ request.app.url_for('static', name='static', filename='js/upload.js') }}"></script> 
+{% endblock %}
+
 {% block content %}
 <div class="container">
-  <form method="post">
-
+  <h2 class="title is-2 mb-1">Upload Files</h2>
+  <p class="has-text-weight-light is-italic mb-1">Upload up to 5 files</p>
+  <hr>
+  <form enctype="multipart/form-data" method="post">
+    <div class="level">
+      <div class="level-item">
+        <div class="file has-name is-boxed">
+          <label class="file-label">
+            <input class="file-input" type="file" name="upload_1">
+            <span class="file-cta">
+              <span class="file-icon">
+                <i class="fas fa-upload"></i>
+              </span>
+              <span class="file-label">
+                Choose a file…
+              </span>
+            </span>
+            <span class="file-name" id="upload_1_name">
+              No File Chosen
+            </span>
+          </label>
+        </div>
+      </div>
+      <div class="level-item">
+        <div class="file has-name is-boxed">
+          <label class="file-label">
+            <input class="file-input" type="file" name="upload_2">
+            <span class="file-cta">
+              <span class="file-icon">
+                <i class="fas fa-upload"></i>
+              </span>
+              <span class="file-label">
+                Choose a file…
+              </span>
+            </span>
+            <span class="file-name" id="upload_2_name">
+              No File Chosen
+            </span>
+          </label>
+        </div>
+      </div>
+      <div class="level-item">
+        <div class="file has-name is-boxed">
+          <label class="file-label">
+            <input class="file-input" type="file" name="upload_3">
+            <span class="file-cta">
+              <span class="file-icon">
+                <i class="fas fa-upload"></i>
+              </span>
+              <span class="file-label">
+                Choose a file…
+              </span>
+            </span>
+            <span class="file-name" id="upload_3_name">
+              No File Chosen
+            </span>
+          </label>
+        </div>
+      </div>
+      <div class="level-item">
+        <div class="file has-name is-boxed">
+          <label class="file-label">
+            <input class="file-input" type="file" name="upload_4">
+            <span class="file-cta">
+              <span class="file-icon">
+                <i class="fas fa-upload"></i>
+              </span>
+              <span class="file-label">
+                Choose a file…
+              </span>
+            </span>
+            <span class="file-name" id="upload_4_name">
+              No File Chosen
+            </span>
+          </label>
+        </div>
+      </div>
+      <div class="level-item">
+        <div class="file has-name is-boxed">
+          <label class="file-label">
+            <input class="file-input" type="file" name="upload_5">
+            <span class="file-cta">
+              <span class="file-icon">
+                <i class="fas fa-upload"></i>
+              </span>
+              <span class="file-label">
+                Choose a file…
+              </span>
+            </span>
+            <span class="file-name" id="upload_5_name">
+              No File Chosen
+            </span>
+          </label>
+        </div>
+      </div>
+    </div>
+    <div class="field is-grouped is-flex is-justify-content-center">
+      <p class="control">
+        <button type="submit" class="button is-primary">
+          Submit
+        </button>
+      </p>
+      <p class="control">
+        <a class="button is-light" href="{{ request.app.url_for('blog.blog') }}">
+          Cancel
+        </a>
+      </p>
+    </div>
   </form>
 </div>
 {% endblock %}
