@@ -7,6 +7,19 @@ def get_all():
     return db.cursor.fetchall()
 
 
+def get_paginated(offset=0, limit=10):
+    db = get_db()
+    data = {
+        'offset': offset,
+        'limit': limit,
+    }
+    db.cursor.execute(
+        'SELECT * FROM post ORDER BY created DESC LIMIT %(offset)s, %(limit)s',
+        data
+    )
+    return db.cursor.fetchall()
+
+
 def add(title, body):
     db = get_db()
     data = {

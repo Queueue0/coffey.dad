@@ -8,7 +8,8 @@
       <div class="card">
         <div class="card-image">
           <figure class="image is-3by4">
-            <img src="{{ request.app.url_for('static', name='static', filename='me.jpeg') }}" alt="Me sitting in Disney World holding a lightsaber" title="TODO: Get a more professional picture">
+            <img src="{{ request.app.url_for('static', name='static', filename='me.jpeg') }}"
+              alt="Me sitting in Disney World holding a lightsaber" title="TODO: Get a more professional picture">
           </figure>
         </div>
         <div class="card-content">
@@ -44,21 +45,47 @@
       <div class="is-flex is-justify-content-center mb-5">
         <p class="title is-1">Welcome To My Site!</p>
       </div>
-      <div class="card">
+      <div class="card mb-3">
         <div class="card-content">
           <div class="is-flex is-justify-content-center mb-6">
-            <p class="title">About</p>
+            <p class="title">About Me</p>
           </div>
           <div class="content">
             <p>
-
-            </p>
-            <p>
-              Sed volutpat ut lacus in luctus. Ut venenatis, magna non tincidunt bibendum, elit neque iaculis dolor, vitae dignissim nisl mauris nec tellus. Fusce blandit, libero quis consectetur iaculis, lorem arcu tincidunt massa, eget interdum dolor ipsum eu lorem. Duis egestas ultrices lacus. Donec venenatis, dui a efficitur facilisis, enim leo bibendum quam, eu tempus libero eros id risus. Aliquam porttitor mollis mattis. Maecenas volutpat convallis vulputate. Suspendisse at commodo metus, vel malesuada quam. Fusce dignissim ante magna, in fringilla nisl viverra non. Quisque tristique metus tellus, vel ultrices massa scelerisque sed. Donec nibh sem, rutrum eget ipsum vitae, laoreet mattis augue.
+              My name is Joshua Coffey and I'm a software engineer currently based in Orlando, Florida. I live here with
+              my fiancee and our pets (two cats and a dog). I have too many hobbies to count due to a little thing
+              called "<a href="https://youtube.com/shorts/ydk_pc-jx1c?si=_w6BvzLIieKINl5-">cool guy syndrome</a>"
+              (severe ADHD) and will be posting about them and anything else I feel like posting about on my blog here.
             </p>
           </div>
         </div>
       </div>
+      <div class="is-flex is-justify-content-center">
+        <h2 class="title is-2 mb-1 pt-2">Recent Posts</h2>
+      </div>
+      {% for post in posts %}
+      <div class="card mb-3">
+        <header class="card-header">
+          <p class="card-header-title">
+            {{ post.title }}
+          </p>
+          <p class="card-header-icon">
+            Posted {{ post.created.strftime('%m/%d/%y') }}
+            {% if post.modified != post.created %}
+            <br>
+            Edited &nbsp;{{ post.modified.strftime('%m/%d/%y') }}
+            {% endif %}
+          </p>
+        </header>
+        <div class="card-content is-clipped" style="max-height: 12em">
+          <div class="content">
+            {{ post.body|safe }}
+            <span class="readmore"><a class="has-text-grey-light has-text-weight-medium"
+                href="{{ request.app.url_for('blog.post', post_id=post.id) }}">Read Full Post</a></span>
+          </div>
+        </div>
+      </div>
+      {% endfor %}
     </div>
   </div>
 </div>

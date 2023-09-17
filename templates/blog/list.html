@@ -23,7 +23,7 @@
     <div class="card-content is-clipped" style="max-height: 15em">
       <div class="content">
         {{ post.body|safe }}
-        <span class="readmore"><a class="has-text-link"
+        <span class="readmore"><a class="has-text-grey-light has-text-weight-medium"
             href="{{ request.app.url_for('blog.post', post_id=post.id) }}">Read Full Post</a></span>
       </div>
     </div>

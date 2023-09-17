@@ -1,10 +1,13 @@
 import aioredis
+import markdown as md
 import os
 
 from auth import bp as auth_bp
 from blog import bp as blog_bp
 from core import auth
 from dotenv import load_dotenv
+from markdown.extensions.extra import ExtraExtension
+from models import post_model
 from sanic import Request, Sanic
 from sanic_session import Session, AIORedisSessionInterface
 
@@ -44,6 +47,9 @@ app.blueprint(auth_bp, url_prefix="/auth")
 @app.get("/", name="home")
 @app.ext.template("home.html")
 async def hello_world(request: Request):
+    posts = post_model.get_paginated(limit=5)
+    for post in posts:
+        post['body'] = md.markdown(post['body'], extensions=[ExtraExtension()])
     return {
         **locals(),
     }

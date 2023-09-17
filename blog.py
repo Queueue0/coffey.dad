@@ -1,7 +1,6 @@
 import markdown as md
 from markdown.extensions.extra import ExtraExtension
 from sanic import Blueprint, Request, response
-from sanic_auth import User
 from sanic_ext import render
 
 from core import auth
