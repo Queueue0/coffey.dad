@@ -3,7 +3,8 @@
 {% block content %}
 <div class="container is-max-desktop">
   {% if request.ctx.session.get('_auth', None) %}
-  <a class="button is-link mb-3" href="{{ request.app.url_for('blog.add_post') }}"><span class="fa-regular fa-square-plus pr-1"></span> Add New Post</a>
+  <a class="button is-link is-light mb-3" href="{{ request.app.url_for('blog.add_post') }}"><span
+      class="fa-regular fa-square-plus pr-1"></span> Add New Post</a>
   {% endif %}
   {% for post in posts %}
   <div class="card mb-3">
@@ -19,9 +20,11 @@
         {% endif %}
       </p>
     </header>
-    <div class="card-content">
+    <div class="card-content is-clipped" style="max-height: 15em">
       <div class="content">
         {{ post.body|safe }}
+        <span class="readmore"><a class="has-text-link"
+            href="{{ request.app.url_for('blog.post', post_id=post.id) }}">Read Full Post</a></span>
       </div>
     </div>
   </div>

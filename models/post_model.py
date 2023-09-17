@@ -21,6 +21,21 @@ def add(title, body):
     return db.cursor.lastrowid
 
 
+def update(id, title, body):
+    db = get_db()
+    data = {
+        'id': id,
+        'title': title,
+        'body': body,
+    }
+    db.cursor.execute(
+        'UPDATE post SET title=%(title)s, body=%(body)s WHERE id=%(id)s',
+        data
+    )
+    db.commit()
+    return db.cursor.lastrowid
+
+
 def get_by_id(id):
     db = get_db()
     data = {

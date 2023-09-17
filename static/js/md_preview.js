@@ -5,3 +5,5 @@ update_preview = () => {
 
   previewBox.innerHTML = converter.makeHtml(bodyBox.value);
 }
+
+update_preview();
