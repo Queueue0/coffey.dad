@@ -30,7 +30,6 @@ async def image_picker(request: Request):
     upload_path = request.app.config['UPLOAD_PATH']
     paths = os.listdir(upload_path)
     if len(paths) > 0:
-        print(paths)
         for path in paths:
             if os.path.isfile(upload_path + '/' + path):
                 url = request.app.url_for(
