@@ -4,6 +4,14 @@
 <head>
   <link rel="stylesheet" href="{{ request.app.url_for('static', name='static', filename='bulma.min.css') }}">
   <script src="{{ request.app.url_for('static', name='static', filename='js/image_picker.js') }}"></script>
+  <style>
+    img {
+      max-height: 250px;
+      max-width: 500px;
+      height: auto;
+      width: auto;
+    }
+  </style>
 </head>
 
 <body>
@@ -11,7 +19,7 @@
     {% for image in images %}
     <div class="column is-one-fifth">
       <div class="is-flex is-justify-content-center">
-        <img src="{{ image }}"  class="is-clickable" onclick="return closeSelf(this);"></img>
+        <img src="{{ image }}" class="is-clickable" onclick="return closeSelf(this);"></img>
       </div>
       <div class="has-text-centered">
         <p>{{ image }}</p>

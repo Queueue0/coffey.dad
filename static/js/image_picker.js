@@ -5,5 +5,4 @@ function closeSelf(sender) {
     }
     catch (err) {}
     window.close();
-    return false;
 }

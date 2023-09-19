@@ -12,7 +12,8 @@ async def upload(request: Request):
     if request.method == "POST":
         for file in request.files.values():
             if file[0].name and file[0].body:
-                with open(request.app.config['UPLOAD_PATH'] + '/' + file[0].name, 'wb') as f:
+                filename = file[0].name.replace(' ', '_')
+                with open(request.app.config['UPLOAD_PATH'] + '/' + filename, 'wb') as f:
                     f.write(file[0].body)
     return await render(
         "upload/upload.html",
@@ -32,10 +33,9 @@ async def image_picker(request: Request):
         print(paths)
         for path in paths:
             if os.path.isfile(upload_path + '/' + path):
-                urls.append(path)
-        for i, path in enumerate(urls):
-            urls[i] = request.app.url_for(
-                'static', name='static', filename='uploads/' + path)
+                url = request.app.url_for(
+                    'static', name='static', filename='uploads/' + path)
+                urls.append(url)
     return await render(
         "upload/image_picker.html",
         context={
