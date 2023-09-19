@@ -1,3 +1,4 @@
+import os
 from sanic import Blueprint, Request
 from sanic_ext import render
 from core import auth
@@ -18,4 +19,23 @@ async def upload(request: Request):
         context={
             **locals(),
         },
+    )
+
+
+@bp.route('/choose-image', ["GET"], name='image_picker')
+@auth.login_required()
+async def image_picker(request: Request):
+    urls = []
+    upload_path = request.app.config['UPLOAD_PATH']
+    for path in os.listdir(upload_path):
+        if os.path.isfile(upload_path + '/' + path):
+            urls.append(path)
+    for i, path in enumerate(urls):
+        urls[i] = request.app.url_for('static', name='static', filename='uploads/' + path)
+    return await render(
+        "upload/image_picker.html",
+        context={
+            'request': request,
+            'images': urls,
+        }
     )

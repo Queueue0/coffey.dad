@@ -7,3 +7,7 @@ update_preview = () => {
 }
 
 document.addEventListener("DOMContentLoaded", update_preview);
+
+function handlePopupResult(result) {
+    alert("result of popup is: " + result);
+}

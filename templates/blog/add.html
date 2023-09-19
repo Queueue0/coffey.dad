@@ -20,12 +20,23 @@
         <textarea class="textarea" name="body" id="bodybox" placeholder="Body" oninput="update_preview()"></textarea>
       </div>
     </div>
-    <div class="field is-grouped">
-      <div class="control">
-        <button type="submit" class="button is-link">Submit</button>
+    <div class="level">
+      <div class="level-left">
+        <div class="level-item">
+          <div class="field is-grouped">
+            <div class="control">
+              <button type="submit" class="button is-link">Submit</button>
+            </div>
+            <div class="control">
+              <a href="/blog" class="button is-link is-light">Cancel</a>
+            </div>
+          </div>
+        </div>
       </div>
-      <div class="control">
-        <a href="/blog" class="button is-link is-light">Cancel</a>
+      <div class="level-right">
+        <div class="level-item">
+          <button type="button" class="button" onclick="window.open('{{ request.app.url_for('upload.image_picker') }}')">Insert Image</button>
+        </div>
       </div>
     </div>
   </form>
