@@ -27,11 +27,15 @@ async def upload(request: Request):
 async def image_picker(request: Request):
     urls = []
     upload_path = request.app.config['UPLOAD_PATH']
-    for path in os.listdir(upload_path):
-        if os.path.isfile(upload_path + '/' + path):
-            urls.append(path)
-    for i, path in enumerate(urls):
-        urls[i] = request.app.url_for('static', name='static', filename='uploads/' + path)
+    paths = os.listdir(upload_path)
+    if len(paths) > 0:
+        print(paths)
+        for path in paths:
+            if os.path.isfile(upload_path + '/' + path):
+                urls.append(path)
+        for i, path in enumerate(urls):
+            urls[i] = request.app.url_for(
+                'static', name='static', filename='uploads/' + path)
     return await render(
         "upload/image_picker.html",
         context={
