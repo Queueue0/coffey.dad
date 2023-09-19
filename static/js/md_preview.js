@@ -6,4 +6,4 @@ update_preview = () => {
   previewBox.innerHTML = converter.makeHtml(bodyBox.value);
 }
 
-update_preview();
+document.addEventListener("DOMContentLoaded", update_preview);
