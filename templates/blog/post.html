@@ -3,6 +3,11 @@
 {% block title %}{{ post.title }} | coffey.dad{% endblock %}
 
 {% block content %}
+<style>
+  img {
+    max-height: 800px;
+  }
+</style>
 <div>
   <a class="is-relative has-text-grey" style="top: 1em; left: 13em;" href="{{ request.app.url_for('blog.blog') }}"><i
       class="fa-regular fa-circle-left fa-2xl"></i></a>
