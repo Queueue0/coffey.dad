@@ -4,6 +4,8 @@
 <head>
   <title>{% block title %}coffey.dad{% endblock %}</title>
 
+  <script src="{{ request.app.url_for('static', name='static', filename='js/main.js') }}"></script>
+
   <script src="https://kit.fontawesome.com/d303e6263a.js" crossorigin="anonymous"></script>
   <link rel="stylesheet" href="{{ request.app.url_for('static', name='static', filename='bulma.min.css') }}">
   <link rel="stylesheet" href="{{ request.app.url_for('static', name='static', filename='css/style.css') }}">
@@ -14,15 +16,20 @@
 </head>
 
 <body>
-  <nav class="navbar has-background-primary mb-3" role="navigation" aria-label="main navigation">
+  <nav class="navbar is-primary mb-3" role="navigation" aria-label="main navigation">
     <div class="navbar-brand">
-      <a class="navbar-item has-text-white" href="{{ request.app.url_for('home') }}">
+      <a class="navbar-item" href="{{ request.app.url_for('home') }}">
         coffey.dad
       </a>
+      <a role="button" class="navbar-burger" data-target="navMenu" aria-label="menu" aria-expanded="false">
+        <span aria-hidden="true"></span>
+        <span aria-hidden="true"></span>
+        <span aria-hidden="true"></span>
+      </a>
     </div>
-    <div class="navbar-menu">
+    <div class="navbar-menu" id="navMenu">
       <div class="navbar-start">
-        <a class="navbar-item has-text-white" href="{{ request.app.url_for('blog.blog') }}">
+        <a class="navbar-item" href="{{ request.app.url_for('blog.blog') }}">
           Blog
         </a>
       </div>

@@ -9,11 +9,11 @@
   }
 </style>
 <div>
-  <a class="is-relative has-text-grey" style="top: 1em; left: 13em;" href="{{ request.app.url_for('blog.blog') }}"><i
-      class="fa-regular fa-circle-left fa-2xl"></i></a>
-  <div class="container is-overlay">
+  <a class="button ml-5 is-link is-light" href="{{ request.app.url_for('blog.blog') }}"><i
+      class="fa-regular fa-circle-left pr-1"></i> Back</a>
+  <div class="container px-5">
     <div class="columns">
-      <div class="column is-11">
+      <div class="column is-11-desktop is-four-fifths-tablet">
         <h1 class="title is-1 is-italic">{{ post.title }}</h1>
         <p class="is-italic has-text-weight-light">
           Posted {{ post.created.strftime('%m/%d/%y') }}
@@ -25,7 +25,7 @@
       </div>
       <div class="column">
         {% if request.ctx.session.get('_auth', None) %}
-        <a class="button is-link is-light" href="{{ request.app.url_for('blog.edit_post', post_id=post.id) }}">Edit
+        <a class="button" href="{{ request.app.url_for('blog.edit_post', post_id=post.id) }}">Edit
           Post</a>
         {% endif %}
       </div>
