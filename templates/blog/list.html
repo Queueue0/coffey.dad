@@ -5,7 +5,7 @@
 {% block content %}
 <div class="container is-max-desktop">
   {% if request.ctx.session.get('_auth', None) %}
-  <div class="level mb-3">
+  <div class="level mb-3 ml-3 is-mobile">
     <div class="level-left">
       <div class="level-item">
         <a class="button is-link is-light" href="{{ request.app.url_for('blog.add_post') }}"><span
@@ -19,7 +19,7 @@
   </div>
   {% endif %}
   {% for post in posts %}
-  <div class="card mb-3">
+  <div class="card mb-3 mx-3">
     <header class="card-header">
       <p class="card-header-title">
         {{ post.title }}
